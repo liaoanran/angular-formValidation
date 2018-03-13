@@ -1,0 +1,102 @@
+<!doctype html>
+<html ng-app="app">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+        <form name="myForm" class="container-fluid" ng-controller="formController" novalidate>
+            <div class="row">
+                <span class="col-2">用户名:</span>
+                <input type="text" class="col-6" name="name" ng-model="name" ng-minlength="8" ng-maxlength="64" required/>
+                <span class="col-4" ng-show="myForm.name.$dirty && myForm.name.$invalid">
+                    <small class="text-danger" ng-show="myForm.name.$error.required">
+                        名字是必填的
+                    </small>
+                    <small class="text-danger" ng-show="myForm.name.$error.minlength">
+                        长度不能小于8位
+                    </small>
+                    <small class="text-danger" ng-show="myForm.name.$error.maxlength">
+                        长度不能大于64位
+                    </small>
+                </span>
+            </div>
+            <div class="row">
+                <span class="col-2">年龄:</span>
+                <input type="number" class="col-6" name="number" ng-model="number" ng-maxlength="3"/>
+                <span class="col-4" ng-show="myForm.number.$dirty && myForm.number.$invalid">
+                    <small class="text-danger" ng-show="myForm.number.$error.number"> 
+                        只能输入数字
+                    </small>
+                    <small class="text-danger" ng-show="myForm.number.$error.maxlength"> 
+                        长度不能大于3位
+                    </small>
+                </span>
+            </div>
+            <div class="row">
+                <span class="col-2">密码:</span>
+                <input type="password" class="col-6" name="password" ng-model="password" ng-maxlength="64" ng-minlength="8" compare="password2" required/>
+                <span class="col-4" ng-show="myForm.password.$dirty && myForm.password.$invalid">
+                    <small class="text-danger" ng-show="myForm.password.$error.required">
+                        密码是必填的
+                    </small>
+                    <small class="text-danger" ng-show="myForm.password.$error.minlength">
+                        长度不能小于8位
+                    </small>
+                    <small class="text-danger" ng-show="myForm.password.$error.maxlength">
+                        长度不能大于64位
+                    </small>
+                </span>
+            </div>     
+            <div class="row">
+                <span class="col-2">确认密码:</span>
+                <input type="password" class="col-6" name="password2" ng-model="password2" compare="password" required />
+                <small class="col-4 text-danger" ng-show="myForm.password2.$dirty && myForm.password2.$invalid">
+                        两次密码不一致
+                </small>
+            </div>    
+            <div class="row">
+                <span class="col-2">手机号:</span>
+                <input type="text" class="col-6" name="phone" ng-model="phone" ng-pattern="/(^0\d{2,3}\-\d{7,8}$)|(^1[3|4|5|6|7|8][0-9]{9}$)/" required/>
+                <span class="col-4" ng-show="myForm.phone.$dirty && myForm.phone.$invalid">
+                    <small class="text-danger" ng-show="myForm.phone.$error.required">
+                        手机号是必填的
+                    </small>
+                    <small class="text-danger" ng-show="myForm.phone.$error.pattern">
+                        手机号格式不对
+                    </small>
+                </span>
+            </div>      
+            <div class="row">
+                <span class="col-2">邮箱:</span>
+                <input type="email" class="col-6" name="email" ng-model="email" required/>
+                <span class="col-4" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                    <small class="text-danger" ng-show="myForm.email.$error.required">
+                        邮箱是必填的
+                    </small>
+                    <small class="text-danger" ng-show="myForm.email.$error.email">
+                        邮箱格式不对
+                    </small>
+                </span>
+            </div>
+            <div class="row">
+                <span class="col-2">备注:</span>
+                <textarea type="text" class="col-6" name="remark" ng-model="remark" ng-maxlength="256"></textarea>
+                <span class="col-4" ng-show="myForm.email.$dirty && myForm.email.$invalid">
+                    <small class="text-danger" ng-show="myForm.email.$error.maxlength">
+                        长度不能大于256位
+                    </small>
+                </span>
+            </div>  
+            <div class="row">
+                <button ng-disabled="myForm.$invalid" ng-click="submit()">submit</button>
+            </div>                                                        
+        </form>
+
+        <script src="./node_modules/jquery/dist/jquery.slim.min.js"></script>
+        <script src="./node_modules/popper.js/dist/umd/popper.min.js"></script>
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="./node_modules/angular/angular.min.js"></script>
+        <script src="./test.js"></script>
+    </body>
+</html>
